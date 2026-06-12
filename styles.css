@@ -183,6 +183,10 @@ p{font-size:clamp(.96rem,1.3vw,1.06rem)}
 .proc-step h3{margin-bottom:8px;color:var(--tx-dark)}
 .proc-step p{font-size:.88rem;color:var(--tx-dark-soft);line-height:1.6;padding:0 4px}
 
+/* FACTORY SHOWCASE */
+.factory-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:36px}
+.factory-row img{width:100%;height:260px;object-fit:cover;border-radius:var(--r);border:1px solid var(--line)}
+
 /* TRADE FLOW GUIDE */
 .flow{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;position:relative}
 .flow-step{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);padding:34px 30px;position:relative;transition:.35s;overflow:hidden}
@@ -422,6 +426,7 @@ footer{background:#080C14;color:var(--tx-mut);padding:72px 0 34px;border-top:1px
   .part-grid{grid-template-columns:1fr}
   .part-cta{padding:26px}
   .flow-step{padding:26px 22px}
+  .factory-row{grid-template-columns:1fr}.factory-row img{height:200px}
   .rev-card{flex:0 0 92%}
   .contact-grid{grid-template-columns:1fr;gap:40px}
   .cta-in{flex-direction:column;align-items:flex-start}
