@@ -73,24 +73,31 @@
     window.addEventListener('resize',update);
     update();
   }
-  // LIGHTBOX
+  // LIGHTBOX with prev/next
   var lb=document.getElementById('lb');
   if(lb){
-    var lbc=document.getElementById('lb-content');
-    function openLB(h){lbc.innerHTML=h;lb.classList.add('open');document.body.style.overflow='hidden';}
+    var lbc=document.getElementById('lb-content'),galItems=[],galIdx=0;
+    document.querySelectorAll('.gal-item').forEach(function(g,i){galItems.push(g.getAttribute('data-img'));});
+    function showGal(idx){galIdx=idx;lbc.innerHTML='<img src="'+galItems[idx]+'" alt="Chris Caruso Creations project" />';lb.classList.add('open');document.body.style.overflow='hidden';updateNav();}
+    function updateNav(){var p=document.getElementById('lb-prev'),n=document.getElementById('lb-next');if(p)p.style.display=galItems.length>1?'flex':'none';if(n)n.style.display=galItems.length>1?'flex':'none';}
     function closeLB(){lb.classList.remove('open');lbc.innerHTML='';document.body.style.overflow='';}
-    var lbClose=document.getElementById('lb-close'); if(lbClose)lbClose.addEventListener('click',closeLB);
+    var lbClose=document.getElementById('lb-close');if(lbClose)lbClose.addEventListener('click',closeLB);
+    var lbPrev=document.getElementById('lb-prev');if(lbPrev)lbPrev.addEventListener('click',function(e){e.stopPropagation();galIdx=(galIdx-1+galItems.length)%galItems.length;lbc.innerHTML='<img src="'+galItems[galIdx]+'" alt="Chris Caruso Creations project" />';});
+    var lbNext=document.getElementById('lb-next');if(lbNext)lbNext.addEventListener('click',function(e){e.stopPropagation();galIdx=(galIdx+1)%galItems.length;lbc.innerHTML='<img src="'+galItems[galIdx]+'" alt="Chris Caruso Creations project" />';});
     lb.addEventListener('click',function(e){if(e.target===lb)closeLB();});
-    document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLB();});
-    document.querySelectorAll('.gal-item').forEach(function(g){g.addEventListener('click',function(){openLB('<img src="'+g.getAttribute('data-img')+'" alt="Chris Caruso Creations project" />');});});
-    document.querySelectorAll('.vid-card').forEach(function(v){function play(){openLB('<video src="'+v.getAttribute('data-video')+'" poster="'+v.querySelector('img').getAttribute('src')+'" controls autoplay playsinline></video>');}v.addEventListener('click',play);v.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();play();}});});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLB();if(e.key==='ArrowLeft'&&lbPrev&&lb.classList.contains('open'))lbPrev.click();if(e.key==='ArrowRight'&&lbNext&&lb.classList.contains('open'))lbNext.click();});
+    document.querySelectorAll('.gal-item').forEach(function(g,i){g.addEventListener('click',function(){showGal(i);});});
+    document.querySelectorAll('.vid-card').forEach(function(v){function play(){lbc.innerHTML='<video src="'+v.getAttribute('data-video')+'" poster="'+v.querySelector('img').getAttribute('src')+'" controls autoplay playsinline></video>';lb.classList.add('open');document.body.style.overflow='hidden';var p=document.getElementById('lb-prev'),n=document.getElementById('lb-next');if(p)p.style.display='none';if(n)n.style.display='none';}v.addEventListener('click',play);v.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();play();}});});
   }
-  // FORMS (web3forms)
+  // FORMS (web3forms - supports file attachments)
   document.querySelectorAll('.enquiry-form').forEach(function(form){
     form.addEventListener('submit',async function(e){
       e.preventDefault();var btn=form.querySelector('.form-submit'),ok=form.parentElement.querySelector('.form-success');
       var label=btn.textContent;btn.textContent='Sending...';btn.disabled=true;
-      try{var res=await fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(Object.fromEntries(new FormData(form)))});var data=await res.json();
+      try{
+        var fd=new FormData(form);
+        var res=await fetch('https://api.web3forms.com/submit',{method:'POST',body:fd});
+        var data=await res.json();
         if(data.success){if(ok)ok.style.display='block';form.reset();btn.style.display='none';}
         else{btn.textContent=label;btn.disabled=false;alert('Something went wrong. Please call 0459 984 461 directly.');}
       }catch(err){btn.textContent=label;btn.disabled=false;alert('Something went wrong. Please call 0459 984 461 directly.');}

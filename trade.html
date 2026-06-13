@@ -94,7 +94,7 @@
       <div class="part-top reveal">
         <span class="eyebrow">Why Trade Partners Choose Us</span>
         <h2>One partner, from <span class="ital">drawing to install.</span></h2>
-        <p>We run our own custom cabinetry warehouse - which means you get one team that designs nothing away, outsources nothing, and answers for everything. Bring us the vision; we'll craft every piece in-house, to spec, on schedule. No coordinating three suppliers. No defects landing on your site. No surprises on handover.</p>
+        <p>We run our own custom cabinetry warehouse - which means you get one team that designs nothing away, outsources nothing, and answers for everything. Kitchens, wardrobes, vanities, shelving, display units, reception desks, bar fitouts, retail joinery - if you can draw it, we can build it. Bring us the vision; we'll craft every piece in-house, to spec, on schedule. No coordinating three suppliers. No defects landing on your site. No surprises on handover.</p>
         <div class="factory-row reveal d2">
           <img src="warehouse-1.png" alt="Custom cabinetry being assembled in Chris Caruso Creations Adelaide factory" loading="lazy" />
           <img src="warehouse-2.png" alt="Materials and manufacturing at Chris Caruso Creations factory Direk Adelaide" loading="lazy" />
@@ -191,6 +191,7 @@
               </select>
             </div>
             <div class="fg"><label for="t-message">About Your Project</label><textarea id="t-message" name="message" placeholder="Project type, scope, rough timeline, and whether you have drawings ready to send..."></textarea></div>
+            <div class="fg fg-file"><label for="t-files">Attach Plans or Drawings</label><input type="file" id="t-files" name="attachment" accept=".pdf,.jpg,.jpeg,.png,.dwg,.dxf" multiple /></div>
             <button type="submit" class="form-submit">Send Trade Enquiry &rarr;</button>
           </form>
           <div class="form-success" role="alert">Thanks - we've received your enquiry and Chris will be in touch about your project. Or call direct on <a href="tel:0459984461">0459 984 461</a>.</div>
@@ -241,9 +242,11 @@
     </div>
   </footer>
 
-  <a href="tel:0459984461" id="fcall">Call 0459 984 461</a>
+  <div id="fcall"><div class="fcall-split"><a href="tel:0459984461"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 4h3l2 5-2.5 1.5a11 11 0 005 5L16 13l5 2v3a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z" stroke-linejoin="round"/></svg>Call Now</a><a href="contact.html">Get a Free Quote</a></div></div>
   <a href="#trade-form" id="fquote">Start a Project &rarr;</a>
   <div id="lb" role="dialog" aria-modal="true" aria-label="Media viewer">
+    <button class="lb-nav lb-prev" id="lb-prev" aria-label="Previous"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    <button class="lb-nav lb-next" id="lb-next" aria-label="Next"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
     <button class="lbc" id="lb-close" aria-label="Close">&#10005;</button>
     <div class="lbi" id="lb-content"></div>
   </div>

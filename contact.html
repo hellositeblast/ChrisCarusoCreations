@@ -137,6 +137,7 @@
               </select>
             </div>
             <div class="fg"><label for="f-message">Tell Us About Your Project</label><textarea id="f-message" name="message" placeholder="Describe your project, rough size, any design plans or drawings..."></textarea></div>
+            <div class="fg fg-file"><label for="f-files">Attach Plans or Photos</label><input type="file" id="f-files" name="attachment" accept=".pdf,.jpg,.jpeg,.png,.dwg,.dxf" multiple /></div>
             <button type="submit" class="form-submit">Send Enquiry &rarr;</button>
           </form>
           <div class="form-success" role="alert">Thank you - we've received your enquiry and Chris will be in touch shortly. Or call now on <a href="tel:0459984461">0459 984 461</a>.</div>
@@ -268,9 +269,11 @@
     </div>
   </footer>
 
-  <a href="tel:0459984461" id="fcall">Call 0459 984 461</a>
+  <div id="fcall"><div class="fcall-split"><a href="tel:0459984461"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 4h3l2 5-2.5 1.5a11 11 0 005 5L16 13l5 2v3a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z" stroke-linejoin="round"/></svg>Call Now</a><a href="contact.html">Get a Free Quote</a></div></div>
   <a href="#quote" id="fquote">Get a Free Quote &rarr;</a>
   <div id="lb" role="dialog" aria-modal="true" aria-label="Media viewer">
+    <button class="lb-nav lb-prev" id="lb-prev" aria-label="Previous"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    <button class="lb-nav lb-next" id="lb-next" aria-label="Next"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
     <button class="lbc" id="lb-close" aria-label="Close">&#10005;</button>
     <div class="lbi" id="lb-content"></div>
   </div>
