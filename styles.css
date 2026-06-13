@@ -184,6 +184,8 @@ p{font-size:clamp(.96rem,1.3vw,1.06rem)}
 .proc-step p{font-size:.88rem;color:var(--tx-dark-soft);line-height:1.6;padding:0 4px}
 
 /* FACTORY SHOWCASE */
+.vid-feature{max-width:800px;margin:0 auto}
+.vid-feature .vid-card{aspect-ratio:16/9}
 .factory-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:36px}
 .factory-row img{width:100%;height:300px;object-fit:cover;border-radius:var(--r);border:1px solid var(--line)}
 
