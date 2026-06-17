@@ -89,14 +89,14 @@
     document.querySelectorAll('.gal-item').forEach(function(g,i){g.addEventListener('click',function(){showGal(i);});});
     document.querySelectorAll('.vid-card').forEach(function(v){function play(){lbc.innerHTML='<video src="'+v.getAttribute('data-video')+'" poster="'+v.querySelector('img').getAttribute('src')+'" controls autoplay playsinline></video>';lb.classList.add('open');document.body.style.overflow='hidden';var p=document.getElementById('lb-prev'),n=document.getElementById('lb-next');if(p)p.style.display='none';if(n)n.style.display='none';}v.addEventListener('click',play);v.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();play();}});});
   }
-  // FORMS (web3forms - supports file attachments)
+  // FORMS (sends via our own /api/contact serverless function using Resend - supports file attachments)
   document.querySelectorAll('.enquiry-form').forEach(function(form){
     form.addEventListener('submit',async function(e){
       e.preventDefault();var btn=form.querySelector('.form-submit'),ok=form.parentElement.querySelector('.form-success');
       var label=btn.textContent;btn.textContent='Sending...';btn.disabled=true;
       try{
         var fd=new FormData(form);
-        var res=await fetch('https://api.web3forms.com/submit',{method:'POST',body:fd});
+        var res=await fetch('/api/contact',{method:'POST',body:fd});
         var data=await res.json();
         if(data.success){if(ok)ok.style.display='block';form.reset();btn.style.display='none';}
         else{btn.textContent=label;btn.disabled=false;alert('Something went wrong. Please call 0459 984 461 directly.');}
